@@ -1,0 +1,1 @@
+Yeni bir constructor oluştururken, javadoc'unu yazmak zorunlu!!!!!!!

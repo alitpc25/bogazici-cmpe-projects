@@ -1,0 +1,5 @@
+Array variables are reference variables: their type is reference type.
+Primitive types are: int, double, float, long, boolean etc.
+
+If a variable is a reference type, its contents are stored in heap, not in call stack
+In call stack, only the reference is stored. Reference is the memory location of the actual content in the heap.

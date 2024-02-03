@@ -1,0 +1,37 @@
+xa = 1
+y = xa + 3
+k = 1 + 4
+t = k - y 
+z = xa / y * y%y
+z
+k
+xa
+y
+a = xor(3, 912)
+xor(t, 6)
+xor(124, k)
+xor(((xa)), xa)
+a
+a = ls(3234, t)
+ls(k, 54654)
+ls(z, xa)
+ls(3234, 567)
+a = rs(3234, t)
+rs(k, 54654)
+rs(z, xa)
+rs(3234, 567)
+a
+a = not(((xa))) | z + y
+not(45754)
+a
+a = lr(xor(((xa)), xa) & z - y, 1)
+lr(xor(((xa)), xa) & z - y, k)
+lr(4563, not((125)))
+lr(8474 - y, y)
+a
+
+a = rr(xor(((xa)), xa) & z - y, 1)
+rr(xor(((xa)), xa) & z - y, k)
+rr(4563, not((125)))
+rr(8474 - y, y)
+a

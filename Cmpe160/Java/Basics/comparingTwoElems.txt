@@ -1,0 +1,1 @@
+equals() methodu ile yap, == ile yaparsan memory location compare eder.

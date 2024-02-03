@@ -1,0 +1,2 @@
+Method içine kaç tane argument gönderileceği değişken ise, bunu mesela (double number1, double number2) gibi yapmak yerine
+(double... numbers) dersin ve eklenen her variable argüman, bu numbers adlı array içinde alınır methoda.

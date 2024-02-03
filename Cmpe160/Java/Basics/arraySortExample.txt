@@ -1,0 +1,18 @@
+	public static void main(String[] args) {
+		int[] a = {2,9,5,4,8,1,6};
+        sortAlgorithm(a);
+        System.out.println(Arrays.toString(a));
+	}
+	
+	public static int[] sortAlgorithm(int[] list) {
+        for (int i = 1; i < list.length; i++) {
+            int temp = list[i];
+            for (int j = i - 1; j >= 0; j--) {
+                if (list[j] > list[j+1]) {
+                    list[j+1] = list[j];
+                    list[j] = temp;
+                }
+            }
+        }
+        return list;
+     }

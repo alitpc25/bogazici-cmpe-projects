@@ -1,0 +1,1 @@
+Arraylerin içeriği, methodlara array parametre olarak verilip method içinde değiştirilebilir. Çünkü reference type old. için reference'i alır direkt ve onu değişebilir.

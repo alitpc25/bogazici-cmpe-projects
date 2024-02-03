@@ -1,0 +1,5 @@
+Two or more methods can have the same name but different parameter lists. This is referred to as method overloading. The Java compiler determines which method to use based on the method signature.
+
+Aynı isme sahip methodlar, farklı veri tipi return edebilir.
+Aynı isme sahip methodlar, farklı sayıda argument alabilir.
+

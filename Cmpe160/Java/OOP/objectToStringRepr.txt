@@ -1,0 +1,6 @@
+toString methodu sayesinde, object oluşturduğumuz yerde:
+	Student studen1 = new Student();
+	System.out.println(student1);
+
+dediğimizde, içeriğini yazar artık
+png'ye bak

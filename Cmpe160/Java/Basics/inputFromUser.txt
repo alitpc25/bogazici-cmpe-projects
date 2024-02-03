@@ -1,0 +1,8 @@
+Scanner importla
+import java.util.Scanner;
+
+Class içinde:
+	Scanner input = new Scanner(System.in)
+
+Artık girilecek veriyi kaydetmek için de:
+	double radius = input.nextDouble() // Mesela kullanıcıdan radius alır bu.

@@ -1,0 +1,1 @@
+array kopyalamak için clone() methodu var. Bi de System.arraycopy() methodu var.

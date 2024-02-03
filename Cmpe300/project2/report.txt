@@ -1,0 +1,43 @@
+The project.py creates slave processes with the given number of machines. Each process is actually a machine and each machine has properties (machineId, currentProdCycle, currentOperation, currentWearFactor etc)
+
+We build a tree structure of machines and in this tree structure, each machine communicates with its parent and initially, leaf machines communicate with the control room over intercommunicator and also root machine communicates with control room over intercommunicator. 
+
+The control room (project.py), creates the tree structure (initial settings of all the machines), gives the initial product to the leaf machines and starts their execution. During the working of the machines, their maintenance costs are also recorded. Our master process is the running project.py code.
+
+The final product is created in the root, and send to master process over intercommunicator.
+
+before adding the results, the parent machine receives outputs of the children machines in their machine ids increasing order, concatenates them accordingly.
+
+Worker machines communicate with each other using comm.send and comm.recv in a blocking way in their own process group. Root and leaf machines also communicate with the control room over intercomm.
+
+Machine maintenance logs are send from the relevant machine to the main control room over intercomm in a non-blocking way. Main control room collects the maintenance logs and writes it to the output.
+
+"The machine subject
+to maintenance must send a string in the form of <Machine Id>-<C>-<Current Production
+Cycle> to the main control room using non-blocking communications.
+
+Main control room read the input text, creates the tree structure, initializes everything and sends each spawned processes their machine info to operate.
+
+TO RUN
+mpiexec -n 1 python3 project.py test_input.txt output.txt
+
+LIBS:
+from mpi4py import MPI
+import sys
+
+
+---------------------
+EKSIKLER:
+README + REPORT
+"Write a report for your project. Do not use any LLM's for your report or code. In your report,
+explain your design choices. Describe the advantages of using parallel programming for this project.
+Create a mock input with no less than 7 machines, and show the rst production cycle using
+diagrams. If your code does not work/compile, or does not give intended results, please write it
+in your code. Explain what might went wrong. Lastly, if this was a real Industry 4.0 project
+aiming to implement a digital twin, what would be the challenges for the implementation? The
+last question is a bonus question (+10 pts), please don't write more than half a page for it. You
+must submit your report as a .pdf file."
+"In addition to the project les, each student in a group must submit a .pdf document stating
+explicitly the parts of the project she/he has worked on. The document must begin with the line
+I worked on the following parts in this project: and all the parts the student has worked on must
+be explained very clearly and in not less than 10 lines"

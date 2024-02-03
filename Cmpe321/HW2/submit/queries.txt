@@ -1,0 +1,48 @@
+1. SELECT COUNT(*) AS Film_Count FROM Film;
+2. SELECT Title, Director_Name, Release_Year FROM Film F LEFT JOIN Director D ON F.Director = D.Director_ID WHERE F.Release_Year < 2020 ORDER BY F.Release_Year ASC;
+3. SELECT * FROM Film F WHERE F.Budget=(SELECT MIN(Budget) FROM Film);
+4. SELECT Director_Name, Type FROM Director D LEFT JOIN Film F ON D.Director_ID = F.Director LEFT JOIN Genre G ON G.Genre_ID = F.Genre WHERE Budget=(SELECT MAX(Budget) FROM Film);
+5. SELECT SUM(Budget) FROM Film;
+6. SELECT Type, COUNT(*) AS Film_Count FROM Film F, Genre G WHERE G.Genre_ID = F.Genre GROUP BY Type ORDER BY Film_Count DESC;
+7. INSERT INTO Award VALUES(59, 'BU-Best Actor', (SELECT Film_ID FROM Film F WHERE F.Title = 'After Sun')); 
+8. SELECT DISTINCT D.Director_Name FROM Award A, Film F, Director D WHERE F.Film_ID = A.Awarded_Film AND D.Director_ID = F.Director GROUP BY Film_ID HAVING COUNT(*) > 2;
+9. SELECT F1.Title, F1.Release_Year, F1.Budget FROM Film F1 JOIN Film F2 ON F1.Release_Year = F2.Release_Year AND F1.Budget > F2.Budget WHERE F2.Title = 'The Godfather';
+10. SELECT F.Title, F.Release_Year FROM Film F JOIN Director D ON F.Director = D.Director_ID JOIN Genre G ON D.Favorite_Genre = G.Genre_ID WHERE F.Release_Year < 2010 AND F.Release_Year > 2000 AND G.Type = 'Comedy';
+11. SELECT F.Title FROM Film F WHERE F.Director NOT IN (SELECT Director_ID FROM Director WHERE Director_Name = ' Martin Scorsese') AND F.Film_ID NOT IN (SELECT Awarded_Film FROM Award);
+12. SELECT Director_Name, Release_Year, Budget as Max_Budget FROM Director D JOIN Film F ON F.Director = D.Director_ID GROUP BY F.Release_Year HAVING MAX(Budget);
+
+
+13. WITH CTE AS (SELECT G.Type, D.Director_Name, COUNT(*) AS Award_Count
+  FROM Award A
+  LEFT JOIN Film F ON A.Awarded_Film = F.Film_ID 
+  LEFT JOIN Director D ON F.Director = D.Director_ID 
+  JOIN Genre G ON G.Genre_ID = F.Genre
+  GROUP BY G.Type, D.Director_Name)
+  
+SELECT Type, Director_Name, Award_Count FROM CTE 
+	WHERE (Type,Award_Count) IN (SELECT Type, MAX(Award_Count) FROM CTE GROUP BY Type);
+
+14. SELECT F.Title, D.Director_Name, F.Release_Year FROM Film F LEFT JOIN Award A ON F.Film_ID = A.Awarded_Film LEFT JOIN Director D ON F.Director = D.Director_ID WHERE Release_Year > 2015 AND A.Awarded_Film IS NULL ORDER BY Release_Year ASC;
+15. SELECT Director_Name, COUNT(*) AS Film_Count
+FROM Film F
+LEFT JOIN Director D ON F.Director = D.Director_ID
+GROUP BY Director_Name
+HAVING Film_Count = (SELECT MAX(Count_of_Films) FROM (
+                          SELECT COUNT(*) AS Count_of_Films
+                          FROM Film F
+                          LEFT JOIN Director D ON F.Director = D.Director_ID
+                          GROUP BY Director_Name
+                        ) AS T)
+ORDER BY Film_Count DESC;
+16. SELECT Director_Name, AVG(Budget) AS Avg_Budget FROM Film F LEFT JOIN Director D ON D.Director_ID = F.Director GROUP BY Director_ID ORDER BY Avg_Budget DESC;
+
+17 BİTMEDİ
+
+17. SELECT MAX(Director_Name), Type, COUNT(*) FROM Film F LEFT JOIN Director D ON D.Director_ID = F.Director LEFT JOIN Award A ON A.Awarded_Film = F.Film_ID LEFT JOIN Genre G ON G.Genre_ID = F.Genre
+	WHERE (A.Awarded_Film IS NULL)
+	GROUP BY Genre, Director_Name; 
+
+18. İPTAL
+19. SELECT * FROM Film F LEFT JOIN Director D ON F.Director = D.Director_ID WHERE D.Favorite_Genre = F.Genre;
+20. SELECT Director_ID, CASE WHEN EXISTS (SELECT DISTINCT Director_ID FROM Director D JOIN Film F ON F.Director = D.Director_ID JOIN Award A ON F.Film_ID = A.Awarded_Film WHERE D.Director_ID = ALL_D.Director_ID) THEN 'TRUE' ELSE 'FALSE' END AS Awarded FROM Director ALL_D;
+
